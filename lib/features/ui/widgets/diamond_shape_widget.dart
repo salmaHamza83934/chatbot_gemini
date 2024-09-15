@@ -4,7 +4,7 @@ import 'dart:math' as math;
 
 class DiamondShapeWidget extends StatelessWidget {
   Animation<double> diamondAnimation;
-  DiamondShapeWidget(this.diamondAnimation);
+  DiamondShapeWidget(this.diamondAnimation, {super.key});
 
   @override
   Widget build(BuildContext context) {

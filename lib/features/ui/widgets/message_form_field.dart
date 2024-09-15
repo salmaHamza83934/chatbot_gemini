@@ -1,19 +1,18 @@
 import 'package:chatbot_gemini/core/theme/app_text_styles.dart';
+import 'package:chatbot_gemini/features/cubit/message_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class MessageFormField extends StatefulWidget {
-  TextEditingController messageController;
-
-  MessageFormField(this.messageController);
+  const MessageFormField({super.key});
 
   @override
   State<MessageFormField> createState() => _MessageFormFieldState();
 }
 
 class _MessageFormFieldState extends State<MessageFormField> {
-  var formKey=GlobalKey<FormState>();
+  var formKey = GlobalKey<FormState>();
+  var messageController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -25,39 +24,37 @@ class _MessageFormFieldState extends State<MessageFormField> {
           padding: EdgeInsets.symmetric(horizontal: 16.w),
           child: Row(
             children: [
-              Container(
+              SizedBox(
                 height: 60.h,
                 width: 280.w,
                 child: TextFormField(
-                  controller: widget.messageController,
+                  controller: messageController,
                   decoration: InputDecoration(
                     enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                          color: Colors.cyan.shade500, width: 2),
+                      borderSide:
+                          BorderSide(color: Colors.cyan.shade500, width: 2),
                       borderRadius: BorderRadius.all(Radius.circular(15.r)),
                     ),
                     errorBorder: OutlineInputBorder(
                       borderSide:
-                      BorderSide(color: Colors.red.shade900, width: 2),
+                          BorderSide(color: Colors.red.shade900, width: 2),
                       borderRadius: BorderRadius.all(Radius.circular(15.r)),
-
                     ),
                     focusedErrorBorder: OutlineInputBorder(
                       borderSide:
-                      BorderSide(color: Colors.red.shade900, width: 2),
+                          BorderSide(color: Colors.red.shade900, width: 2),
                       borderRadius: BorderRadius.all(Radius.circular(15.r)),
                     ),
                     focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                          color: Colors.cyan.shade800, width: 2),
+                      borderSide:
+                          BorderSide(color: Colors.cyan.shade800, width: 2),
                       borderRadius: BorderRadius.all(Radius.circular(15.r)),
-
                     ),
-                    hintText: 'Type a message',hintStyle: AppTextStyles.font15quicksand,
+                    hintText: 'Type a message',
+                    hintStyle: AppTextStyles.font15quicksand,
                     errorStyle: const TextStyle(
                       height: 0,
-                      color: Colors
-                          .transparent, // Make the text transparent
+                      color: Colors.transparent, // Make the text transparent
                     ),
                   ),
                   validator: (text) {
@@ -68,10 +65,12 @@ class _MessageFormFieldState extends State<MessageFormField> {
                   },
                 ),
               ),
-              Spacer(),
+              const Spacer(),
               GestureDetector(
-                onTap: (){
+                onTap: () {
                   if (formKey.currentState!.validate()) {
+                    MessageCubit.get(context).sendMessage(messageController.text, 'user');
+                    messageController.clear();
                   }
                 },
                 child: Container(
@@ -89,7 +88,7 @@ class _MessageFormFieldState extends State<MessageFormField> {
                         end: Alignment.topRight,
                       ),
                       borderRadius: BorderRadius.circular(15.r)),
-                  child: Icon(
+                  child: const Icon(
                     Icons.send_rounded,
                     color: Colors.white,
                   ),

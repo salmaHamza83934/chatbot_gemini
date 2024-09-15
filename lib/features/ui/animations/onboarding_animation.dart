@@ -30,7 +30,7 @@ class OnboardingAnimations {
 
     buttonAnimation = CurvedAnimation(
       parent: controller,
-      curve: const Interval(0.9, 1.0, curve: Curves.easeIn),
+      curve: const Interval(0.9, 1, curve: Curves.easeIn),
     );
   }
 

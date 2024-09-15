@@ -1,8 +1,13 @@
+import 'package:chatbot_gemini/core/theme/app_text_styles.dart';
 import 'package:chatbot_gemini/features/ui/widgets/bot_details_line.dart';
 import 'package:chatbot_gemini/features/ui/widgets/message_form_field.dart';
+import 'package:chatbot_gemini/features/ui/widgets/message_widget.dart';
 import 'package:chatbot_gemini/features/ui/widgets/no_message_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../cubit/message_cubit.dart';
+import '../cubit/message_states.dart';
 
 class ChatScreen extends StatefulWidget {
   const ChatScreen({super.key});
@@ -12,25 +17,6 @@ class ChatScreen extends StatefulWidget {
 }
 
 class _ChatScreenState extends State<ChatScreen> {
-  var messageController = TextEditingController();
-  bool isMessageEmpty = true;
-
-  @override
-  void initState() {
-    super.initState();
-    messageController.addListener(() {
-      setState(() {
-        isMessageEmpty = messageController.text.isEmpty;
-      });
-    });
-  }
-
-  @override
-  void dispose() {
-    messageController.dispose();
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,8 +49,35 @@ class _ChatScreenState extends State<ChatScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    NoMessageWidget(isMessageEmpty),
-                    MessageFormField(messageController),
+                    BlocBuilder<MessageCubit, MessageState>(
+                      bloc: MessageCubit.get(context),
+                      builder: (context, state) {
+                        if (state is MessageInitial) {
+                          return const NoMessageWidget();
+                        }
+                        else if (state is MessageSuccess) {
+                          return Expanded(
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 10.w, vertical: 10.h),
+                              child: ListView.builder(
+                                physics: const BouncingScrollPhysics(),
+                                itemBuilder: (BuildContext context, int index) {
+                                  return MessageWidget(state.messages[index]);
+                                },
+                                itemCount: state.messages.length,
+                              ),
+                            ),
+                          );
+                        }
+                        return Expanded(
+                          child: Center(child: Text(
+                              'Oops, Something\n went wrong!', style
+                              :AppTextStyles.font24quicksand,textAlign: TextAlign.center,)),
+                        );
+                      },
+                    ),
+                    const MessageFormField(),
                     SizedBox(
                       height: 30.w,
                     ),

@@ -1,12 +1,11 @@
 import 'package:chatbot_gemini/core/theme/app_text_styles.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'gradient_text_widget.dart';
 
 class OnboardingTitleWidget extends StatelessWidget {
   Animation<double> titleAnimation;
-  OnboardingTitleWidget(this.titleAnimation);
+  OnboardingTitleWidget(this.titleAnimation, {super.key});
 
   @override
   Widget build(BuildContext context) {

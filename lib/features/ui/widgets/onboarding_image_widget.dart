@@ -5,7 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class OnboardingImageWidget extends StatelessWidget {
   Animation<double> imageAnimation;
 
-  OnboardingImageWidget(this.imageAnimation);
+  OnboardingImageWidget(this.imageAnimation, {super.key});
 
   @override
   Widget build(BuildContext context) {
