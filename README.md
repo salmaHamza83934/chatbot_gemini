@@ -3,11 +3,11 @@
 The Gemini Chatbot Application is a dynamic and engaging chat interface built with Flutter and the Gemini API. This application provides an interactive and conversational experience, featuring real-time communication with an AI chatbot.
 
 ## Features 🎨
-Real-Time Messaging: Seamless real-time communication with the Gemini chatbot.
-Typing Indicator: Displays a "CleverCat is typing..." message to enhance the conversational flow.
-Animated UI: Include animations to enhance user experience.
-Message Handling: Manage and display messages efficiently, including handling errors and responses.
-Responsive Design: Utilizes Flutter’s responsive design features using screenUtils.
+- Real-Time Messaging: Seamless real-time communication with the Gemini chatbot.
+- Typing Indicator: Displays a "CleverCat is typing..." message to enhance the conversational flow.
+- Animated UI: Include animations to enhance user experience.
+- Message Handling: Manage and display messages efficiently, including handling errors and responses.
+- Responsive Design: Utilizes Flutter’s responsive design features using screenUtils.
 
 ## Usage 📖
 Start Chatting: Launch the app and interact with the AI chatbot.
