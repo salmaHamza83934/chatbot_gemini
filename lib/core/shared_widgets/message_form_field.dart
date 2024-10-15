@@ -1,7 +1,8 @@
 import 'package:chatbot_gemini/core/theme/app_text_styles.dart';
-import 'package:chatbot_gemini/features/cubit/message_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../../features/chat_screen/cubit/message_cubit.dart';
 
 class MessageFormField extends StatefulWidget {
   const MessageFormField({super.key});

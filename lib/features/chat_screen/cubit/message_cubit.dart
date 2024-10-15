@@ -18,6 +18,7 @@ class MessageCubit extends Cubit<MessageState> {
   }
 
   void sendMessage(String content, String sender) async {
+    print('');
 
     messages.add(MessageModel(content, sender));
     emit(MessageSuccess(messages));

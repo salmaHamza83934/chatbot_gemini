@@ -1,8 +1,10 @@
 import 'package:chatbot_gemini/core/theme/app_text_styles.dart';
+import 'package:chatbot_gemini/features/login_screen/ui/login_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../chat_screen.dart';
+
+import '../../features/chat_screen/ui/chat_screen.dart';
 
 class GetStartedButton extends StatelessWidget {
   bool isAnimationCompleted;
@@ -29,7 +31,7 @@ class GetStartedButton extends StatelessWidget {
                   Navigator.push(
                     context,
                     CupertinoPageRoute(
-                      builder: (context) => const ChatScreen(),
+                      builder: (context) => LoginScreen(),
                     ),
                   );
                 }

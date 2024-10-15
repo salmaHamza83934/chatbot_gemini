@@ -1,8 +1,8 @@
-import 'package:chatbot_gemini/features/data/models/message_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../core/theme/app_text_styles.dart';
+import '../../features/chat_screen/data/models/message_model.dart';
 
 class MessageWidget extends StatelessWidget {
   MessageModel message;

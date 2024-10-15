@@ -1,10 +1,10 @@
-import 'package:chatbot_gemini/features/ui/widgets/diamond_shape_widget.dart';
-import 'package:chatbot_gemini/features/ui/widgets/get_started_button.dart';
-import 'package:chatbot_gemini/features/ui/widgets/onboarding_description.dart';
-import 'package:chatbot_gemini/features/ui/widgets/onboarding_image_widget.dart';
-import 'package:chatbot_gemini/features/ui/widgets/onboarding_title_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../core/shared_widgets/diamond_shape_widget.dart';
+import '../../core/shared_widgets/get_started_button.dart';
+import '../../core/shared_widgets/onboarding_description.dart';
+import '../../core/shared_widgets/onboarding_image_widget.dart';
+import '../../core/shared_widgets/onboarding_title_widget.dart';
 import 'animations/onboarding_animation.dart';
 
 class OnboardingScreen extends StatefulWidget {
