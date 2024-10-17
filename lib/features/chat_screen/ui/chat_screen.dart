@@ -8,7 +8,7 @@ import '../../../core/shared_widgets/message_form_field.dart';
 import '../../../core/shared_widgets/message_widget.dart';
 import '../../../core/shared_widgets/no_message_widget.dart';
 import '../cubit/message_cubit.dart';
-import '../cubit/message_states.dart';
+import '../cubit/message_state.dart';
 
 class ChatScreen extends StatefulWidget {
   const ChatScreen({super.key});
@@ -56,34 +56,38 @@ class _ChatScreenState extends State<ChatScreen> {
                           BlocBuilder<MessageCubit, MessageState>(
                             bloc: MessageCubit.get(context),
                             builder: (context, state) {
-                              if (state is MessageInitial) {
-                                return const NoMessageWidget();
-                              }
-                              else if (state is MessageSuccess) {
-                                return Expanded(
-                                  child: Padding(
-                                    padding: EdgeInsets.symmetric(
-                                        horizontal: 10.w, vertical: 10.h),
-                                    child: ListView.builder(
-                                      physics: const BouncingScrollPhysics(),
-                                      itemBuilder: (BuildContext context, int index) {
-                                        return MessageWidget(state.messages[index]);
-                                      },
-                                      itemCount: state.messages.length,
-                                    ),
-                                  ),
-                                );
-                              }
-                              return Expanded(
-                                child: Center(child: Text(
-                                    'Oops, Something\n went wrong!', style
-                                    :AppTextStyles.font24quicksand,textAlign: TextAlign.center,)),
-                              );
+                              return state.maybeWhen(
+                                  success: (messages) {
+                                   return Expanded(
+                                      child: Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 10.w, vertical: 10.h),
+                                        child: ListView.builder(
+                                          physics:
+                                              const BouncingScrollPhysics(),
+                                          itemBuilder: (BuildContext context,
+                                              int index) {
+                                            return MessageWidget(
+                                                messages[index]);
+                                          },
+                                          itemCount: messages.length,
+                                        ),
+                                      ),
+                                    );
+                                  },initial: ()=>const NoMessageWidget(),
+                                  orElse: () => Expanded(
+                                        child: Center(
+                                            child: Text(
+                                          'Oops, Something\n went wrong!',
+                                          style: AppTextStyles.font24quicksand,
+                                          textAlign: TextAlign.center,
+                                        )),
+                                      ));
                             },
                           ),
                           const MessageFormField(),
                           SizedBox(
-                            height: 30.w,
+                            height: 20.w,
                           ),
                         ],
                       ),

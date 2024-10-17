@@ -1,11 +1,16 @@
-import 'package:chatbot_gemini/core/shared_widgets/app_form_field.dart';
-import 'package:chatbot_gemini/features/login_screen/widgets/login_buttons_section.dart';
-import 'package:chatbot_gemini/features/login_screen/widgets/login_circles_animation.dart';
-import 'package:chatbot_gemini/features/login_screen/widgets/login_title_section.dart';
+import 'package:chatbot_gemini/core/di/dependency_injection.dart';
+import 'package:chatbot_gemini/features/login_screen/logic/login_cubit.dart';
+import 'package:chatbot_gemini/features/login_screen/ui/widgets/login_bloc_listener.dart';
+import 'package:chatbot_gemini/features/login_screen/ui/widgets/login_buttons_section.dart';
+import 'package:chatbot_gemini/features/login_screen/ui/widgets/login_circles_animation.dart';
+import 'package:chatbot_gemini/features/login_screen/ui/widgets/login_form.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
+
   @override
   _LoginScreenState createState() => _LoginScreenState();
 }
@@ -13,7 +18,6 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
-  var formKey = GlobalKey<FormState>();
 
   @override
   void initState() {
@@ -22,14 +26,15 @@ class _LoginScreenState extends State<LoginScreen>
       duration: const Duration(seconds: 7),
       reverseDuration: const Duration(seconds: 5),
       vsync: this,
-    )..repeat();
+    )
+      ..repeat();
   }
-
   @override
   void dispose() {
-    _controller.dispose();
     super.dispose();
+    _controller.dispose();
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -55,23 +60,17 @@ class _LoginScreenState extends State<LoginScreen>
                               color: Colors.grey.withOpacity(0.5),
                               spreadRadius: 2,
                               blurRadius: 7,
-                              offset:
-                                  Offset(0, 3), // changes position of shadow
+                              offset: const Offset(
+                                  0, 3), // changes position of shadow
                             ),
                           ],
                           borderRadius: BorderRadius.circular(25.r)),
-                      child: Form(
-                        key: formKey,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            LoginTitleSection(),
-                            AppFormField(false, 'Enter your E-mail'),
-                            AppFormField(true, 'Enter your password'),
-                            SizedBox(height: 20.h,),
-                            LoginButtonsSection(formKey),
-                          ],
-                        ),
+                      child: const Column(
+                        children: [
+                          LoginForm(),
+                          LoginButtonsSection(),
+                          LoginBlocListener()
+                        ],
                       ),
                     ),
                   ),

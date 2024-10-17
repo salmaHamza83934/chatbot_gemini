@@ -54,6 +54,7 @@ class _MessageFormFieldState extends State<MessageFormField> {
                     hintText: 'Type a message',
                     hintStyle: AppTextStyles.font15quicksand,
                     errorStyle: const TextStyle(
+                      fontSize: 0,
                       height: 0,
                       color: Colors.transparent, // Make the text transparent
                     ),

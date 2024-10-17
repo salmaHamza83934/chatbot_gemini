@@ -5,7 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class LoginCirclesAnimation extends StatelessWidget {
   AnimationController controller;
-  LoginCirclesAnimation(this.controller);
+  LoginCirclesAnimation(this.controller, {super.key});
 
   @override
   Widget build(BuildContext context) {

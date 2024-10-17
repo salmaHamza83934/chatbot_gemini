@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
+import '../../../../core/routing/routes_names.dart';
 import '../../../../core/theme/app_text_styles.dart';
 import '../../../login_screen/ui/login_screen.dart';
+import '../../logic/signup_cubit.dart';
 
 class SignupButtonsSection extends StatelessWidget {
-  GlobalKey<FormState> formKey;
-
-
-  SignupButtonsSection(this.formKey);
+  const SignupButtonsSection({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,13 +18,10 @@ class SignupButtonsSection extends StatelessWidget {
         ),
         GestureDetector(
           onTap: () {
-              if (formKey.currentState!.validate()) {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => LoginScreen(),
-                    ));
-
+            if (context.read<SignupCubit>().formKey
+                .currentState!
+                .validate()) {
+              context.read<SignupCubit>().signUp();
             }
           },
           child: Container(
@@ -44,18 +40,17 @@ class SignupButtonsSection extends StatelessWidget {
             child: Center(
               child: Text(
                 'CREATE ACCOUNT',
-                style: AppTextStyles.font15quicksand.copyWith(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold),
+                style: AppTextStyles.font15quicksand
+                    .copyWith(color: Colors.white, fontWeight: FontWeight.bold),
               ),
             ),
           ),
         ),
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: 7.w,vertical: 10.h),
+          padding: EdgeInsets.symmetric(horizontal: 7.w, vertical: 10.h),
           child: GestureDetector(
-            onTap: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen(),));
+            onTap: () {
+              Navigator.pushNamed(context, Routes.loginScreen);
             },
             child: Text(
               'Already have account?',
@@ -63,7 +58,9 @@ class SignupButtonsSection extends StatelessWidget {
             ),
           ),
         ),
-        SizedBox(height: 20.h,)
+        SizedBox(
+          height: 20.h,
+        )
       ],
     );
   }

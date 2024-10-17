@@ -1,14 +1,15 @@
 import 'package:chatbot_gemini/features/chat_screen/ui/chat_screen.dart';
+import 'package:chatbot_gemini/features/login_screen/logic/login_cubit.dart';
 import 'package:chatbot_gemini/features/signup_screen/ui/signup_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../core/theme/app_text_styles.dart';
+import '../../../../core/routing/routes_names.dart';
+import '../../../../core/theme/app_text_styles.dart';
 
 class LoginButtonsSection extends StatelessWidget {
-  GlobalKey<FormState> formKey;
-
-  LoginButtonsSection(this.formKey);
+  const LoginButtonsSection({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,12 +17,10 @@ class LoginButtonsSection extends StatelessWidget {
       children: [
         GestureDetector(
           onTap: () {
-            if (formKey.currentState!.validate()) {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => ChatScreen(),
-                  ));
+            if (context.read<LoginCubit>().formKey
+                .currentState!
+                .validate()) {
+              context.read<LoginCubit>().login();
             }
           },
           child: Container(
@@ -51,21 +50,21 @@ class LoginButtonsSection extends StatelessWidget {
         ),
         Row(
           children: [
-            Expanded(
+            const Expanded(
               child: Divider(
                 thickness: 1, // Set the thickness of the divider
                 color: Colors.grey,
               ),
             ),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 5),
+              padding: const EdgeInsets.symmetric(horizontal: 5),
               // Add some space around "or"
               child: Text(
                 'Or',
                 style: AppTextStyles.font12quicksand,
               ),
             ),
-            Expanded(
+            const Expanded(
               child: Divider(
                 thickness: 1,
                 color: Colors.grey,
@@ -78,11 +77,8 @@ class LoginButtonsSection extends StatelessWidget {
         ),
         GestureDetector(
           onTap: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => SignupScreen(),
-                ));
+            Navigator.pushNamed(context, Routes.signInScreen);
+
           },
           child: Container(
             height: 60.h,

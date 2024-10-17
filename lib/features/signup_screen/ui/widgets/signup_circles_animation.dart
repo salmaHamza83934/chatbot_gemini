@@ -3,8 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'dart:math';
 
 class SignupCirclesAnimation extends StatelessWidget {
-  AnimationController _controller;
-  SignupCirclesAnimation(this._controller, {super.key});
+  final AnimationController _controller;
+  const SignupCirclesAnimation(this._controller, {super.key});
 
   @override
   Widget build(BuildContext context) {

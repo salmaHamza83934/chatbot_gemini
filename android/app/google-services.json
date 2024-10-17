@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "858939960423",
+    "project_id": "gemini-chatbot-1c3bd",
+    "storage_bucket": "gemini-chatbot-1c3bd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:858939960423:android:ffe945cd31d6278085b8c2",
+        "android_client_info": {
+          "package_name": "com.example.chatbot_gemini"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC2r42SEWIQFHxVyTfeCf-MVsdXL48_SIc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:858939960423:android:b758dac952b7821c85b8c2",
+        "android_client_info": {
+          "package_name": "com.gemini_chatbot.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC2r42SEWIQFHxVyTfeCf-MVsdXL48_SIc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
