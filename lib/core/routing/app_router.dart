@@ -1,4 +1,5 @@
 import 'package:chatbot_gemini/core/routing/routes_names.dart';
+import 'package:chatbot_gemini/features/chat_screen/cubit/message_cubit.dart';
 import 'package:chatbot_gemini/features/chat_screen/ui/chat_screen.dart';
 import 'package:chatbot_gemini/features/onboarding_screen/onboarding_screen.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +13,6 @@ import '../di/dependency_injection.dart';
 
 class AppRouter {
   Route? generateRoute(RouteSettings settings) {
-
     switch (settings.name) {
       case Routes.onboardingScreen:
         return MaterialPageRoute(
@@ -20,23 +20,29 @@ class AppRouter {
         );
       case Routes.loginScreen:
         return MaterialPageRoute(
-          builder: (_) => BlocProvider(
-            create: (context) => getIt<LoginCubit>(),
-            child: const LoginScreen(),
-          ),
+          builder: (_) =>
+              BlocProvider(
+                create: (context) => getIt<LoginCubit>(),
+                child: const LoginScreen(),
+              ),
         );
 
       case Routes.signInScreen:
         return MaterialPageRoute(
-          builder: (_) => BlocProvider(
-            create: (context) => getIt<SignupCubit>(),
-            child: const SignupScreen(),
-          ),
+          builder: (_) =>
+              BlocProvider(
+                create: (context) => getIt<SignupCubit>(),
+                child: const SignupScreen(),
+              ),
         );
 
       case Routes.chatScreen:
         return MaterialPageRoute(
-          builder: (_) =>  ChatScreen(),
+          builder: (_) =>
+              BlocProvider(
+                create: (context) => getIt<MessageCubit>(),
+                child: ChatScreen(),
+              ),
         );
 
       default:

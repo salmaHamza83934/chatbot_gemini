@@ -1,7 +1,7 @@
 import 'package:chatbot_gemini/core/theme/app_text_styles.dart';
 import 'package:flutter/material.dart';
 
-import 'gradient_text_widget.dart';
+import '../../../core/shared_widgets/gradient_text_widget.dart';
 
 class OnboardingTitleWidget extends StatelessWidget {
   Animation<double> titleAnimation;

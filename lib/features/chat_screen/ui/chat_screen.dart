@@ -1,26 +1,17 @@
-import 'package:chatbot_gemini/core/theme/app_text_styles.dart';
+import 'package:chatbot_gemini/features/chat_screen/ui/widgets/chat_bloc_builder.dart';
+import 'package:chatbot_gemini/features/chat_screen/ui/widgets/chat_drawer.dart';
+import 'package:chatbot_gemini/features/chat_screen/ui/widgets/message_form_field.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'widgets/bot_details_line.dart';
 
-import '../../../core/shared_widgets/bot_details_line.dart';
-import '../../../core/shared_widgets/message_form_field.dart';
-import '../../../core/shared_widgets/message_widget.dart';
-import '../../../core/shared_widgets/no_message_widget.dart';
-import '../cubit/message_cubit.dart';
-import '../cubit/message_state.dart';
-
-class ChatScreen extends StatefulWidget {
+class ChatScreen extends StatelessWidget {
   const ChatScreen({super.key});
 
   @override
-  State<ChatScreen> createState() => _ChatScreenState();
-}
-
-class _ChatScreenState extends State<ChatScreen> {
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: buildChatScreenDrawer(context),
       body: Column(
         children: [
           Expanded(
@@ -53,41 +44,10 @@ class _ChatScreenState extends State<ChatScreen> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          BlocBuilder<MessageCubit, MessageState>(
-                            bloc: MessageCubit.get(context),
-                            builder: (context, state) {
-                              return state.maybeWhen(
-                                  success: (messages) {
-                                   return Expanded(
-                                      child: Padding(
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: 10.w, vertical: 10.h),
-                                        child: ListView.builder(
-                                          physics:
-                                              const BouncingScrollPhysics(),
-                                          itemBuilder: (BuildContext context,
-                                              int index) {
-                                            return MessageWidget(
-                                                messages[index]);
-                                          },
-                                          itemCount: messages.length,
-                                        ),
-                                      ),
-                                    );
-                                  },initial: ()=>const NoMessageWidget(),
-                                  orElse: () => Expanded(
-                                        child: Center(
-                                            child: Text(
-                                          'Oops, Something\n went wrong!',
-                                          style: AppTextStyles.font24quicksand,
-                                          textAlign: TextAlign.center,
-                                        )),
-                                      ));
-                            },
-                          ),
-                          const MessageFormField(),
+                          ChatBlocBuilder(),
+                          MessageFormField(),
                           SizedBox(
-                            height: 20.w,
+                            height: 10.h,
                           ),
                         ],
                       ),

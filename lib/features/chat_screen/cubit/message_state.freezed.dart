@@ -21,6 +21,7 @@ mixin _$MessageState {
     required TResult Function() initial,
     required TResult Function(List<MessageModel> messages) success,
     required TResult Function(String error) failure,
+    required TResult Function(List<String> chatHistoryIds) chatHistorySuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -28,6 +29,7 @@ mixin _$MessageState {
     TResult? Function()? initial,
     TResult? Function(List<MessageModel> messages)? success,
     TResult? Function(String error)? failure,
+    TResult? Function(List<String> chatHistoryIds)? chatHistorySuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -35,6 +37,7 @@ mixin _$MessageState {
     TResult Function()? initial,
     TResult Function(List<MessageModel> messages)? success,
     TResult Function(String error)? failure,
+    TResult Function(List<String> chatHistoryIds)? chatHistorySuccess,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -43,6 +46,7 @@ mixin _$MessageState {
     required TResult Function(MessageInitial value) initial,
     required TResult Function(MessageSuccess value) success,
     required TResult Function(MessageFailure value) failure,
+    required TResult Function(ChatHistorySuccess value) chatHistorySuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -50,6 +54,7 @@ mixin _$MessageState {
     TResult? Function(MessageInitial value)? initial,
     TResult? Function(MessageSuccess value)? success,
     TResult? Function(MessageFailure value)? failure,
+    TResult? Function(ChatHistorySuccess value)? chatHistorySuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -57,6 +62,7 @@ mixin _$MessageState {
     TResult Function(MessageInitial value)? initial,
     TResult Function(MessageSuccess value)? success,
     TResult Function(MessageFailure value)? failure,
+    TResult Function(ChatHistorySuccess value)? chatHistorySuccess,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -127,6 +133,7 @@ class _$MessageInitialImpl implements MessageInitial {
     required TResult Function() initial,
     required TResult Function(List<MessageModel> messages) success,
     required TResult Function(String error) failure,
+    required TResult Function(List<String> chatHistoryIds) chatHistorySuccess,
   }) {
     return initial();
   }
@@ -137,6 +144,7 @@ class _$MessageInitialImpl implements MessageInitial {
     TResult? Function()? initial,
     TResult? Function(List<MessageModel> messages)? success,
     TResult? Function(String error)? failure,
+    TResult? Function(List<String> chatHistoryIds)? chatHistorySuccess,
   }) {
     return initial?.call();
   }
@@ -147,6 +155,7 @@ class _$MessageInitialImpl implements MessageInitial {
     TResult Function()? initial,
     TResult Function(List<MessageModel> messages)? success,
     TResult Function(String error)? failure,
+    TResult Function(List<String> chatHistoryIds)? chatHistorySuccess,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -161,6 +170,7 @@ class _$MessageInitialImpl implements MessageInitial {
     required TResult Function(MessageInitial value) initial,
     required TResult Function(MessageSuccess value) success,
     required TResult Function(MessageFailure value) failure,
+    required TResult Function(ChatHistorySuccess value) chatHistorySuccess,
   }) {
     return initial(this);
   }
@@ -171,6 +181,7 @@ class _$MessageInitialImpl implements MessageInitial {
     TResult? Function(MessageInitial value)? initial,
     TResult? Function(MessageSuccess value)? success,
     TResult? Function(MessageFailure value)? failure,
+    TResult? Function(ChatHistorySuccess value)? chatHistorySuccess,
   }) {
     return initial?.call(this);
   }
@@ -181,6 +192,7 @@ class _$MessageInitialImpl implements MessageInitial {
     TResult Function(MessageInitial value)? initial,
     TResult Function(MessageSuccess value)? success,
     TResult Function(MessageFailure value)? failure,
+    TResult Function(ChatHistorySuccess value)? chatHistorySuccess,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -273,6 +285,7 @@ class _$MessageSuccessImpl implements MessageSuccess {
     required TResult Function() initial,
     required TResult Function(List<MessageModel> messages) success,
     required TResult Function(String error) failure,
+    required TResult Function(List<String> chatHistoryIds) chatHistorySuccess,
   }) {
     return success(messages);
   }
@@ -283,6 +296,7 @@ class _$MessageSuccessImpl implements MessageSuccess {
     TResult? Function()? initial,
     TResult? Function(List<MessageModel> messages)? success,
     TResult? Function(String error)? failure,
+    TResult? Function(List<String> chatHistoryIds)? chatHistorySuccess,
   }) {
     return success?.call(messages);
   }
@@ -293,6 +307,7 @@ class _$MessageSuccessImpl implements MessageSuccess {
     TResult Function()? initial,
     TResult Function(List<MessageModel> messages)? success,
     TResult Function(String error)? failure,
+    TResult Function(List<String> chatHistoryIds)? chatHistorySuccess,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -307,6 +322,7 @@ class _$MessageSuccessImpl implements MessageSuccess {
     required TResult Function(MessageInitial value) initial,
     required TResult Function(MessageSuccess value) success,
     required TResult Function(MessageFailure value) failure,
+    required TResult Function(ChatHistorySuccess value) chatHistorySuccess,
   }) {
     return success(this);
   }
@@ -317,6 +333,7 @@ class _$MessageSuccessImpl implements MessageSuccess {
     TResult? Function(MessageInitial value)? initial,
     TResult? Function(MessageSuccess value)? success,
     TResult? Function(MessageFailure value)? failure,
+    TResult? Function(ChatHistorySuccess value)? chatHistorySuccess,
   }) {
     return success?.call(this);
   }
@@ -327,6 +344,7 @@ class _$MessageSuccessImpl implements MessageSuccess {
     TResult Function(MessageInitial value)? initial,
     TResult Function(MessageSuccess value)? success,
     TResult Function(MessageFailure value)? failure,
+    TResult Function(ChatHistorySuccess value)? chatHistorySuccess,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -421,6 +439,7 @@ class _$MessageFailureImpl implements MessageFailure {
     required TResult Function() initial,
     required TResult Function(List<MessageModel> messages) success,
     required TResult Function(String error) failure,
+    required TResult Function(List<String> chatHistoryIds) chatHistorySuccess,
   }) {
     return failure(error);
   }
@@ -431,6 +450,7 @@ class _$MessageFailureImpl implements MessageFailure {
     TResult? Function()? initial,
     TResult? Function(List<MessageModel> messages)? success,
     TResult? Function(String error)? failure,
+    TResult? Function(List<String> chatHistoryIds)? chatHistorySuccess,
   }) {
     return failure?.call(error);
   }
@@ -441,6 +461,7 @@ class _$MessageFailureImpl implements MessageFailure {
     TResult Function()? initial,
     TResult Function(List<MessageModel> messages)? success,
     TResult Function(String error)? failure,
+    TResult Function(List<String> chatHistoryIds)? chatHistorySuccess,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -455,6 +476,7 @@ class _$MessageFailureImpl implements MessageFailure {
     required TResult Function(MessageInitial value) initial,
     required TResult Function(MessageSuccess value) success,
     required TResult Function(MessageFailure value) failure,
+    required TResult Function(ChatHistorySuccess value) chatHistorySuccess,
   }) {
     return failure(this);
   }
@@ -465,6 +487,7 @@ class _$MessageFailureImpl implements MessageFailure {
     TResult? Function(MessageInitial value)? initial,
     TResult? Function(MessageSuccess value)? success,
     TResult? Function(MessageFailure value)? failure,
+    TResult? Function(ChatHistorySuccess value)? chatHistorySuccess,
   }) {
     return failure?.call(this);
   }
@@ -475,6 +498,7 @@ class _$MessageFailureImpl implements MessageFailure {
     TResult Function(MessageInitial value)? initial,
     TResult Function(MessageSuccess value)? success,
     TResult Function(MessageFailure value)? failure,
+    TResult Function(ChatHistorySuccess value)? chatHistorySuccess,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -493,5 +517,167 @@ abstract class MessageFailure implements MessageState {
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$MessageFailureImplCopyWith<_$MessageFailureImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ChatHistorySuccessImplCopyWith<$Res> {
+  factory _$$ChatHistorySuccessImplCopyWith(_$ChatHistorySuccessImpl value,
+          $Res Function(_$ChatHistorySuccessImpl) then) =
+      __$$ChatHistorySuccessImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({List<String> chatHistoryIds});
+}
+
+/// @nodoc
+class __$$ChatHistorySuccessImplCopyWithImpl<$Res>
+    extends _$MessageStateCopyWithImpl<$Res, _$ChatHistorySuccessImpl>
+    implements _$$ChatHistorySuccessImplCopyWith<$Res> {
+  __$$ChatHistorySuccessImplCopyWithImpl(_$ChatHistorySuccessImpl _value,
+      $Res Function(_$ChatHistorySuccessImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of MessageState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? chatHistoryIds = null,
+  }) {
+    return _then(_$ChatHistorySuccessImpl(
+      null == chatHistoryIds
+          ? _value._chatHistoryIds
+          : chatHistoryIds // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ChatHistorySuccessImpl implements ChatHistorySuccess {
+  const _$ChatHistorySuccessImpl(final List<String> chatHistoryIds)
+      : _chatHistoryIds = chatHistoryIds;
+
+  final List<String> _chatHistoryIds;
+  @override
+  List<String> get chatHistoryIds {
+    if (_chatHistoryIds is EqualUnmodifiableListView) return _chatHistoryIds;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_chatHistoryIds);
+  }
+
+  @override
+  String toString() {
+    return 'MessageState.chatHistorySuccess(chatHistoryIds: $chatHistoryIds)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ChatHistorySuccessImpl &&
+            const DeepCollectionEquality()
+                .equals(other._chatHistoryIds, _chatHistoryIds));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_chatHistoryIds));
+
+  /// Create a copy of MessageState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ChatHistorySuccessImplCopyWith<_$ChatHistorySuccessImpl> get copyWith =>
+      __$$ChatHistorySuccessImplCopyWithImpl<_$ChatHistorySuccessImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function(List<MessageModel> messages) success,
+    required TResult Function(String error) failure,
+    required TResult Function(List<String> chatHistoryIds) chatHistorySuccess,
+  }) {
+    return chatHistorySuccess(chatHistoryIds);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function(List<MessageModel> messages)? success,
+    TResult? Function(String error)? failure,
+    TResult? Function(List<String> chatHistoryIds)? chatHistorySuccess,
+  }) {
+    return chatHistorySuccess?.call(chatHistoryIds);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function(List<MessageModel> messages)? success,
+    TResult Function(String error)? failure,
+    TResult Function(List<String> chatHistoryIds)? chatHistorySuccess,
+    required TResult orElse(),
+  }) {
+    if (chatHistorySuccess != null) {
+      return chatHistorySuccess(chatHistoryIds);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(MessageInitial value) initial,
+    required TResult Function(MessageSuccess value) success,
+    required TResult Function(MessageFailure value) failure,
+    required TResult Function(ChatHistorySuccess value) chatHistorySuccess,
+  }) {
+    return chatHistorySuccess(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(MessageInitial value)? initial,
+    TResult? Function(MessageSuccess value)? success,
+    TResult? Function(MessageFailure value)? failure,
+    TResult? Function(ChatHistorySuccess value)? chatHistorySuccess,
+  }) {
+    return chatHistorySuccess?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(MessageInitial value)? initial,
+    TResult Function(MessageSuccess value)? success,
+    TResult Function(MessageFailure value)? failure,
+    TResult Function(ChatHistorySuccess value)? chatHistorySuccess,
+    required TResult orElse(),
+  }) {
+    if (chatHistorySuccess != null) {
+      return chatHistorySuccess(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ChatHistorySuccess implements MessageState {
+  const factory ChatHistorySuccess(final List<String> chatHistoryIds) =
+      _$ChatHistorySuccessImpl;
+
+  List<String> get chatHistoryIds;
+
+  /// Create a copy of MessageState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$ChatHistorySuccessImplCopyWith<_$ChatHistorySuccessImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

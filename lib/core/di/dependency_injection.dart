@@ -1,3 +1,5 @@
+import 'package:chatbot_gemini/features/chat_screen/cubit/message_cubit.dart';
+import 'package:chatbot_gemini/features/chat_screen/data/repo/message_repo.dart';
 import 'package:chatbot_gemini/features/login_screen/data/login_repo.dart';
 import 'package:chatbot_gemini/features/login_screen/logic/login_cubit.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -16,4 +18,7 @@ Future<void> setupGetIt() async {
 
   getIt.registerLazySingleton<LoginRepository>(()=>LoginRepository(firebaseAuth: firebaseAuth));
   getIt.registerFactory<LoginCubit>(() => LoginCubit(getIt()));
+
+  MessageRepository messageRepository=MessageRepository();
+  getIt.registerFactory<MessageCubit>(()=>MessageCubit(messageRepository));
 }
