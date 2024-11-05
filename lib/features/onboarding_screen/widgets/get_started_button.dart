@@ -3,11 +3,15 @@ import 'package:chatbot_gemini/core/theme/app_text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../core/cach_helper/shared_preference.dart';
+import '../../../core/constants/constants.dart';
 
 class GetStartedButton extends StatelessWidget {
   bool isAnimationCompleted;
   Animation<double> buttonAnimation;
-   GetStartedButton(this.isAnimationCompleted,this.buttonAnimation, {super.key});
+
+  GetStartedButton(this.isAnimationCompleted, this.buttonAnimation,
+      {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -25,9 +29,14 @@ class GetStartedButton extends StatelessWidget {
               color: Colors.black,
               child: InkWell(
                 onTap: isAnimationCompleted
-                    ? () {
-                  Navigator.pushNamed(context, Routes.loginScreen);
-                }
+                    ? () async {
+                        await checkIsUserLoggedIn();
+                        Navigator.pushNamed(
+                            context,
+                            isUserLoggedIn
+                                ? Routes.chatScreen
+                                : Routes.loginScreen);
+                      }
                     : null,
                 borderRadius: BorderRadius.circular(16.r),
                 child: Center(
@@ -42,5 +51,14 @@ class GetStartedButton extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  checkIsUserLoggedIn() async {
+    String userToken = await SharedPrefHelper.getSecuredString('userToken');
+    if (userToken.isEmpty) {
+      isUserLoggedIn = false;
+    } else {
+      isUserLoggedIn = true;
+    }
   }
 }

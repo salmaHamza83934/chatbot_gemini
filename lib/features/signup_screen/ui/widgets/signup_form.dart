@@ -48,6 +48,8 @@ class _SignupFormState extends State<SignupForm> {
   @override
   void dispose() {
     passwordController.dispose();
+    context.read<SignupCubit>().emailController.dispose();
+    context.read<SignupCubit>().confirmPasswordController.dispose();
     super.dispose();
   }
 
@@ -63,6 +65,7 @@ class _SignupFormState extends State<SignupForm> {
             height: 20.h,
           ),
           AppFormField(
+            textInputType: TextInputType.emailAddress,
             haveIcon: false,
             controller: context.read<SignupCubit>().emailController,
             hintText: 'Enter your E-mail',

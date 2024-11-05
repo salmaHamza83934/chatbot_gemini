@@ -17,6 +17,13 @@ class _LoginFormState extends State<LoginForm> {
   bool isObscure = true;
 
   @override
+  void dispose() {
+    context.read<LoginCubit>().passwordController.dispose();
+    context.read<LoginCubit>().emailController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Form(
       key: context.read<LoginCubit>().formKey,
@@ -25,6 +32,7 @@ class _LoginFormState extends State<LoginForm> {
         children: [
           const LoginTitleSection(),
           AppFormField(
+            textInputType: TextInputType.emailAddress,
               haveIcon: false,
               hintText: 'Enter your E-mail',
               controller:context.read<LoginCubit>().emailController,validator: (text) {

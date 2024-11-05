@@ -1,3 +1,4 @@
+import 'package:chatbot_gemini/core/cach_helper/shared_preference.dart';
 import 'package:chatbot_gemini/core/routing/routes_names.dart';
 import 'package:chatbot_gemini/features/chat_screen/cubit/chat_cubit.dart';
 import 'package:chatbot_gemini/features/chat_screen/cubit/chat_state.dart';
@@ -156,6 +157,7 @@ Drawer buildChatScreenDrawer(BuildContext context) {
                 borderRadius: BorderRadius.circular(16.r),
                 color: Colors.white.withOpacity(0.6),
                 child: InkWell(
+                  borderRadius: BorderRadius.circular(16.r),
                   onTap: () {
                     BlocProvider.of<ChatCubit>(context).addNewChat();
                     Navigator.pop(context);
@@ -188,25 +190,33 @@ Drawer buildChatScreenDrawer(BuildContext context) {
               child: Material(
                 borderRadius: BorderRadius.circular(16.r),
                 color: Colors.white.withOpacity(0.6),
-                child: Padding(
-                  padding:
-                      EdgeInsets.symmetric(horizontal: 15.w, vertical: 15.h),
-                  child: Row(
-                    children: [
-                      Icon(
-                        Icons.logout_rounded,
-                        size: 30.r,
-                        color: Colors.red.shade800,
-                      ),
-                      SizedBox(
-                        width: 10.w,
-                      ),
-                      Text(
-                        'Log out',
-                        style: AppTextStyles.font20quicksand
-                            .copyWith(color: Colors.red.shade800),
-                      ),
-                    ],
+                child: InkWell(
+                  borderRadius: BorderRadius.circular(16.r),
+                  onTap: () async{
+                    await SharedPrefHelper.clearAllSecuredData().then((v){
+                      Navigator.pushNamed(context, Routes.onboardingScreen);
+                    });
+                  },
+                  child: Padding(
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 15.w, vertical: 15.h),
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.logout_rounded,
+                          size: 30.r,
+                          color: Colors.red.shade800,
+                        ),
+                        SizedBox(
+                          width: 10.w,
+                        ),
+                        Text(
+                          'Log out',
+                          style: AppTextStyles.font20quicksand
+                              .copyWith(color: Colors.red.shade800),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),

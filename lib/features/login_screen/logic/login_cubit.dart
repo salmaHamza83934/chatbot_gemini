@@ -2,10 +2,14 @@ import 'package:bloc/bloc.dart';
 import 'package:chatbot_gemini/features/login_screen/data/login_repo.dart';
 import 'package:chatbot_gemini/features/login_screen/logic/login_state.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+
+import '../../../core/cach_helper/shared_preference.dart';
 
 class LoginCubit extends Cubit<LoginState> {
   final LoginRepository _loginRepository;
+
   LoginCubit(this._loginRepository) : super(const LoginState.initial());
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
@@ -19,11 +23,16 @@ class LoginCubit extends Cubit<LoginState> {
           emailController.text,
           passwordController.text,
         );
+        await SharedPrefHelper.setSecuredString('userToken', FirebaseAuth.instance.currentUser!.uid);
+
         emit(LoginState.loginSuccess(response));
       } on FirebaseAuthException catch (e) {
-        emit(LoginState.loginError(e.message??'Something went wrong!'));
+        emit(LoginState.loginError(e.message ?? 'Something went wrong!'));
       } catch (e) {
         emit(LoginState.loginError(e.toString()));
       }
     }
-}}
+  }
+}
+
+

@@ -1,3 +1,4 @@
+import 'package:chatbot_gemini/core/cach_helper/shared_preference.dart';
 import 'package:chatbot_gemini/core/constants/constants.dart';
 import 'package:chatbot_gemini/core/di/dependency_injection.dart';
 import 'package:chatbot_gemini/core/routing/app_router.dart';
@@ -22,16 +23,14 @@ void main() async {
   await Hive.initFlutter();
   Hive.registerAdapter(MessageHiveModelAdapter());
   Hive.registerAdapter(ChatHiveModelAdapter());
-
-
-
   await setupGetIt();
   runApp(MyApp(appRouter: AppRouter(),));
 }
 
 class MyApp extends StatelessWidget {
   AppRouter appRouter;
-  MyApp({super.key,required this.appRouter});
+
+  MyApp({super.key, required this.appRouter});
 
   @override
   Widget build(BuildContext context) {
@@ -39,15 +38,17 @@ class MyApp extends StatelessWidget {
       designSize: const Size(384, 805),
       minTextAdapt: true,
       splitScreenMode: true,
-      builder: (context , child)=> MaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor:Colors.grey[800]!),
-          useMaterial3: true,
-        ),
-        initialRoute: Routes.chatScreen,
-        onGenerateRoute: appRouter.generateRoute,
-      ),
+      builder: (context, child) =>
+          MaterialApp(
+            debugShowCheckedModeBanner: false,
+            theme: ThemeData(
+              colorScheme: ColorScheme.fromSeed(seedColor: Colors.grey[800]!),
+              useMaterial3: true,
+            ),
+            initialRoute: Routes.onboardingScreen,
+            onGenerateRoute: appRouter.generateRoute,
+          ),
     );
   }
+
 }

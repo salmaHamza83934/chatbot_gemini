@@ -55,6 +55,8 @@ dependencies:
   hive: ^2.0.0
   flutter_spinkit: ^5.2.1
   uuid: ^3.0.6
+  shared_preferences: ^2.3.2
+  flutter_secure_storage: ^4.2.1
 
 dev_dependencies:
   flutter_test:

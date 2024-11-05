@@ -10,20 +10,23 @@ class AppFormField extends StatelessWidget {
   Widget? suffixIcon;
   bool isObscure;
   String? Function(String?)? validator;
-  AppFormField(
-      {required this.haveIcon,
-      required this.hintText,
-      required this.controller,
-      this.isObscure = false,
-      this.suffixIcon,
-        required this.validator,
-      super.key});
+  TextInputType? textInputType;
+
+  AppFormField({required this.haveIcon,
+    required this.hintText,
+    required this.controller,
+    this.textInputType,
+    this.isObscure = false,
+    this.suffixIcon,
+    required this.validator,
+    super.key});
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 80.h,
       child: TextFormField(
+        keyboardType:textInputType,
         obscureText: isObscure,
         controller: controller,
         decoration: InputDecoration(
@@ -45,7 +48,8 @@ class AppFormField extends StatelessWidget {
           ),
           hintText: hintText,
           hintStyle: AppTextStyles.font15quicksand,
-          errorStyle: AppTextStyles.font12quicksand.copyWith(color: Colors.red.shade900),
+          errorStyle: AppTextStyles.font12quicksand.copyWith(
+              color: Colors.red.shade900),
           suffixIcon: haveIcon
               ? suffixIcon
               : const SizedBox(),
