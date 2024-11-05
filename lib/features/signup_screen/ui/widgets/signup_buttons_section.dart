@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/routing/routes_names.dart';
 import '../../../../core/theme/app_text_styles.dart';
-import '../../../login_screen/ui/login_screen.dart';
 import '../../logic/signup_cubit.dart';
 
 class SignupButtonsSection extends StatelessWidget {

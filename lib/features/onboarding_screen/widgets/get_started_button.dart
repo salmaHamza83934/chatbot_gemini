@@ -1,7 +1,5 @@
 import 'package:chatbot_gemini/core/routing/routes_names.dart';
 import 'package:chatbot_gemini/core/theme/app_text_styles.dart';
-import 'package:chatbot_gemini/features/login_screen/ui/login_screen.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

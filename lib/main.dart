@@ -2,6 +2,7 @@ import 'package:chatbot_gemini/core/constants/constants.dart';
 import 'package:chatbot_gemini/core/di/dependency_injection.dart';
 import 'package:chatbot_gemini/core/routing/app_router.dart';
 import 'package:chatbot_gemini/core/routing/routes_names.dart';
+import 'package:chatbot_gemini/features/chat_screen/data/models/chat_hive_model.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -19,7 +20,8 @@ void main() async {
   await Firebase.initializeApp();
   await ScreenUtil.ensureScreenSize();
   await Hive.initFlutter();
-  Hive.registerAdapter(MessageHiveModelAdapter()); // Register your adapter
+  Hive.registerAdapter(MessageHiveModelAdapter());
+  Hive.registerAdapter(ChatHiveModelAdapter());
 
 
 

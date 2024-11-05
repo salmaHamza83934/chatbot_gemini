@@ -1,6 +1,5 @@
 import 'package:bloc/bloc.dart';
 import 'package:chatbot_gemini/features/signup_screen/logic/signup_state.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 

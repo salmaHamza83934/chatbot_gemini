@@ -1,6 +1,4 @@
-import 'package:chatbot_gemini/features/chat_screen/ui/chat_screen.dart';
 import 'package:chatbot_gemini/features/login_screen/logic/login_cubit.dart';
-import 'package:chatbot_gemini/features/signup_screen/ui/signup_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

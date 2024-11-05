@@ -1,12 +1,15 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 import '../../../../core/theme/app_text_styles.dart';
-import '../../cubit/message_cubit.dart';
+import '../../cubit/chat_cubit.dart';
 
 class MessageFormField extends StatefulWidget {
+  const MessageFormField({super.key});
+
   @override
   State<MessageFormField> createState() => _MessageFormFieldState();
 }
@@ -113,7 +116,7 @@ class _MessageFormFieldState extends State<MessageFormField> {
                   onTap: () {
                     if (formKey.currentState!.validate() || imagePath != null) {
                       // Send both message text and the image (if selected)
-                      MessageCubit.get(context).sendMessage(
+                      BlocProvider.of<ChatCubit>(context).sendMessage(
                           messageController.text, 'user', imagePath);
                       messageController.clear();
                       imagePath = null;

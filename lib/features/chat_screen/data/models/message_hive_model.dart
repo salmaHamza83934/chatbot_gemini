@@ -7,24 +7,18 @@ class MessageHiveModel extends HiveObject {
 
   @HiveField(0)
   final String chatId;
-  @HiveField(1)
-  final String chatTitle;
-  @HiveField(2)
-  final String chatSubtitle;
 
-  @HiveField(3)
+  @HiveField(1)
   final String? content;
 
-  @HiveField(4)
+  @HiveField(2)
   final String sender;
 
-  @HiveField(5)
+  @HiveField(3)
   final String? imageUrl;
 
   MessageHiveModel({
     required this.chatId,
-    required this.chatTitle,
-    required this.chatSubtitle,
     required this.content,
     required this.sender,
     this.imageUrl,

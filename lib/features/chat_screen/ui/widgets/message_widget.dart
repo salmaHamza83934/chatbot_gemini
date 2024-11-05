@@ -10,7 +10,7 @@ import '../../data/models/message_model.dart';
 class MessageWidget extends StatelessWidget {
   final MessageModel message;
 
-  MessageWidget(this.message, {super.key});
+  const MessageWidget(this.message, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,7 @@ class MessageWidget extends StatelessWidget {
 class SentMessage extends StatelessWidget {
   final MessageModel message;
 
-  SentMessage(this.message, {super.key});
+  const SentMessage(this.message, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -75,7 +75,7 @@ class SentMessage extends StatelessWidget {
 class ReceiverMessage extends StatefulWidget {
   final MessageModel message;
 
-  ReceiverMessage(this.message, {super.key});
+  const ReceiverMessage(this.message, {super.key});
 
   @override
   State<ReceiverMessage> createState() => _ReceiverMessageState();

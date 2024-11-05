@@ -1,41 +1,43 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'message_hive_model.dart';
+part of 'chat_hive_model.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
 // **************************************************************************
 
-class MessageHiveModelAdapter extends TypeAdapter<MessageHiveModel> {
+class ChatHiveModelAdapter extends TypeAdapter<ChatHiveModel> {
   @override
-  final int typeId = 0;
+  final int typeId = 1;
 
   @override
-  MessageHiveModel read(BinaryReader reader) {
+  ChatHiveModel read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return MessageHiveModel(
-      chatId: fields[0] as String,
-      content: fields[1] as String?,
-      sender: fields[2] as String,
-      imageUrl: fields[3] as String?,
+    return ChatHiveModel(
+      id: fields[0] as String,
+      title: fields[1] as String,
+      subTitle: fields[2] as String,
+      messageIds: (fields[3] as List).cast<String>(),
     );
   }
 
   @override
-  void write(BinaryWriter writer, MessageHiveModel obj) {
+  void write(BinaryWriter writer, ChatHiveModel obj) {
     writer
-      ..writeByte(4)
+      ..writeByte(5)
       ..writeByte(0)
-      ..write(obj.chatId)
+      ..write(obj.id)
       ..writeByte(1)
-      ..write(obj.content)
+      ..write(obj.title)
       ..writeByte(2)
-      ..write(obj.sender)
+      ..write(obj.subTitle)
       ..writeByte(3)
-      ..write(obj.imageUrl);
+      ..write(obj.messageIds)
+      ..writeByte(4)
+      ..write(obj.timestamp);
   }
 
   @override
@@ -44,7 +46,7 @@ class MessageHiveModelAdapter extends TypeAdapter<MessageHiveModel> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is MessageHiveModelAdapter &&
+      other is ChatHiveModelAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

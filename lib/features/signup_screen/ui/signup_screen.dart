@@ -1,12 +1,9 @@
-import 'package:chatbot_gemini/core/di/dependency_injection.dart';
 import 'package:chatbot_gemini/features/signup_screen/ui/widgets/signup_bloc_listener.dart';
 import 'package:chatbot_gemini/features/signup_screen/ui/widgets/signup_buttons_section.dart';
 import 'package:chatbot_gemini/features/signup_screen/ui/widgets/signup_circles_animation.dart';
 import 'package:chatbot_gemini/features/signup_screen/ui/widgets/signup_form.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../logic/signup_cubit.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});

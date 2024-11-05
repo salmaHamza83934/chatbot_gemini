@@ -1,8 +1,9 @@
 import 'package:chatbot_gemini/core/asset_images/app_images.dart';
 import 'package:chatbot_gemini/core/theme/app_text_styles.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../cubit/message_cubit.dart';
+import '../../cubit/chat_cubit.dart';
 
 class BotDetailsLine extends StatelessWidget {
   const BotDetailsLine({super.key});
@@ -17,12 +18,14 @@ class BotDetailsLine extends StatelessWidget {
         children: [
           // Drawer Icon
           IconButton(
-            icon: Icon(Icons.menu, size: 30.r),  // Drawer Icon
+            icon: Icon(Icons.menu, size: 30.r), // Drawer Icon
             onPressed: () {
-              Scaffold.of(context).openDrawer();  // Open Drawer
+              Scaffold.of(context).openDrawer(); // Open Drawer
             },
           ),
-          SizedBox(width: 10.w,),
+          SizedBox(
+            width: 10.w,
+          ),
           Row(
             children: [
               const CircleAvatar(
@@ -55,7 +58,8 @@ class BotDetailsLine extends StatelessWidget {
               PopupMenuItem(
                 height: 40.h,
                 onTap: () {
-                  MessageCubit.get(context).deleteChat();
+                  BlocProvider.of<ChatCubit>(context).deleteChatFromDB(
+                      BlocProvider.of<ChatCubit>(context).currentChatId);
                 },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -66,7 +70,7 @@ class BotDetailsLine extends StatelessWidget {
                       size: 30.r,
                     ),
                     Text(
-                      'Delete Chat',
+                      'Clear Chat',
                       style: AppTextStyles.font15quicksand
                           .copyWith(color: Colors.red.shade800),
                     )

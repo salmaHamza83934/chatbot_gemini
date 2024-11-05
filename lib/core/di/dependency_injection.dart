@@ -1,4 +1,4 @@
-import 'package:chatbot_gemini/features/chat_screen/cubit/message_cubit.dart';
+import 'package:chatbot_gemini/features/chat_screen/cubit/chat_cubit.dart';
 import 'package:chatbot_gemini/features/chat_screen/data/repo/message_repo.dart';
 import 'package:chatbot_gemini/features/login_screen/data/login_repo.dart';
 import 'package:chatbot_gemini/features/login_screen/logic/login_cubit.dart';
@@ -7,6 +7,7 @@ import 'package:get_it/get_it.dart';
 
 import '../../features/signup_screen/data/signup_repo.dart';
 import '../../features/signup_screen/logic/signup_cubit.dart';
+import '../hive_service/hive_service.dart';
 
 final getIt = GetIt.instance;
 
@@ -19,6 +20,9 @@ Future<void> setupGetIt() async {
   getIt.registerLazySingleton<LoginRepository>(()=>LoginRepository(firebaseAuth: firebaseAuth));
   getIt.registerFactory<LoginCubit>(() => LoginCubit(getIt()));
 
-  MessageRepository messageRepository=MessageRepository();
-  getIt.registerFactory<MessageCubit>(()=>MessageCubit(messageRepository));
+  final hiveService = HiveService();
+  await hiveService.init(); // Initialize Hive and boxes
+  getIt.registerSingleton<HiveService>(hiveService);
+  getIt.registerLazySingleton<MessageRepository>(() => MessageRepository());
+  getIt.registerFactory<ChatCubit>(() => ChatCubit(getIt<MessageRepository>(), getIt<HiveService>()));
 }
