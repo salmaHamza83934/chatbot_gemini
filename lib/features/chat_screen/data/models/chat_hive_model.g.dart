@@ -21,13 +21,14 @@ class ChatHiveModelAdapter extends TypeAdapter<ChatHiveModel> {
       title: fields[1] as String,
       subTitle: fields[2] as String,
       messageIds: (fields[3] as List).cast<String>(),
+      userEmail: fields[5] as String,
     );
   }
 
   @override
   void write(BinaryWriter writer, ChatHiveModel obj) {
     writer
-      ..writeByte(5)
+      ..writeByte(6)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -37,7 +38,9 @@ class ChatHiveModelAdapter extends TypeAdapter<ChatHiveModel> {
       ..writeByte(3)
       ..write(obj.messageIds)
       ..writeByte(4)
-      ..write(obj.timestamp);
+      ..write(obj.timestamp)
+      ..writeByte(5)
+      ..write(obj.userEmail);
   }
 
   @override

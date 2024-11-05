@@ -16,6 +16,11 @@ class AppTextStyles {
     color: Colors.grey.shade600,
     fontSize: 15.sp,
   );
+  static TextStyle font16quicksand = GoogleFonts.quicksand(
+    fontWeight: FontWeight.w500,
+    color: Colors.grey.shade600,
+    fontSize: 16.sp,
+  );
   static TextStyle font18quicksand = GoogleFonts.quicksand(
     fontWeight: FontWeight.w400,
     color: Colors.white,

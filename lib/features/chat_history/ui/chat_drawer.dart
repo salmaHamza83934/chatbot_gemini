@@ -1,5 +1,6 @@
 import 'package:chatbot_gemini/core/cach_helper/shared_preference.dart';
 import 'package:chatbot_gemini/core/routing/routes_names.dart';
+import 'package:chatbot_gemini/core/shared_widgets/custom_alert_dialog.dart';
 import 'package:chatbot_gemini/features/chat_screen/cubit/chat_cubit.dart';
 import 'package:chatbot_gemini/features/chat_screen/cubit/chat_state.dart';
 import 'package:flutter/material.dart';
@@ -85,7 +86,8 @@ Drawer buildChatScreenDrawer(BuildContext context) {
                                     // Handle possible null subtitle
                                     trailing: PopupMenuButton<String>(
                                       iconSize: 30.r,
-                                      icon: Icon(Icons.keyboard_arrow_down_rounded),
+                                      icon: Icon(
+                                          Icons.keyboard_arrow_down_rounded),
                                       color: Colors.white,
                                       enableFeedback: false,
                                       padding: EdgeInsets.zero,
@@ -97,11 +99,28 @@ Drawer buildChatScreenDrawer(BuildContext context) {
                                         PopupMenuItem(
                                           height: 40.h,
                                           onTap: () {
-                                            BlocProvider.of<ChatCubit>(context)
-                                                .deleteSpecificChatHistory(chat.id);
+                                            showCustomAlertDialog(
+                                              context: context,
+                                              title: 'Delete Chat?',
+                                              description:
+                                                  'Are you sure you want to delete this chat? This will remove all messages within this conversation permanently. This action cannot be undone.',
+                                              primaryActionText: 'Yes, Delete',
+                                              secondaryActionText: 'Cancel',
+                                              primaryActionButtonColor:
+                                                  Colors.red.shade800,
+                                              primaryActionFun: () {
+                                                BlocProvider.of<ChatCubit>(
+                                                        context)
+                                                    .deleteSpecificChatHistory(
+                                                        chat.id);
+                                                Navigator.pop(context);
+                                              },
+                                              secondaryActionFun: () {
+                                                Navigator.pop(context);
+                                              },
+                                            );
                                           },
                                           child: Row(
-
                                             children: [
                                               Icon(
                                                 Icons.delete_forever,
@@ -192,10 +211,25 @@ Drawer buildChatScreenDrawer(BuildContext context) {
                 color: Colors.white.withOpacity(0.6),
                 child: InkWell(
                   borderRadius: BorderRadius.circular(16.r),
-                  onTap: () async{
-                    await SharedPrefHelper.clearAllSecuredData().then((v){
-                      Navigator.pushNamed(context, Routes.onboardingScreen);
-                    });
+                  onTap: () async {
+                    showCustomAlertDialog(
+                      context: context,
+                      title: 'Oops! Sign Out?',
+                      description:
+                          'Are you sure you want to sign out? We’ll miss you! Don’t worry, you can come back anytime to pick up where you left off.',
+                      primaryActionText: 'Yes, Sign Out',
+                      secondaryActionText: 'Stay',
+                      primaryActionButtonColor: Colors.cyan,
+                      primaryActionFun: () async {
+                        await SharedPrefHelper.clearAllSecuredData().then((v) {
+                          Navigator.pushReplacementNamed(
+                              context, Routes.onboardingScreen,);
+                        });
+                      },
+                      secondaryActionFun: () {
+                        Navigator.pop(context);
+                      },
+                    );
                   },
                   child: Padding(
                     padding:

@@ -8,10 +8,10 @@ class ChatHiveModel extends HiveObject {
   final String id;
 
   @HiveField(1)
-   String title;
+  String title;
 
   @HiveField(2)
-   String subTitle;
+  String subTitle;
 
   @HiveField(3)
   final List<String> messageIds; // Store message IDs for quick access
@@ -19,10 +19,14 @@ class ChatHiveModel extends HiveObject {
   @HiveField(4)
   final DateTime timestamp;
 
+  @HiveField(5)
+  final String userEmail; // New field for user’s email
+
   ChatHiveModel({
     required this.id,
     required this.title,
     required this.subTitle,
     required this.messageIds,
-  }): timestamp = DateTime.now();
+    required this.userEmail, // Require the email in the constructor
+  }) : timestamp = DateTime.now();
 }

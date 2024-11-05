@@ -5,6 +5,7 @@ class MessageModel {
   final String? imageUrl;
   final bool isLoading;
   bool isAnimated;
+  final String? userEmail; // New field for the user's email
 
   MessageModel({
     required this.chatId,
@@ -12,6 +13,7 @@ class MessageModel {
     required this.sender,
     this.imageUrl,
     this.isLoading = false,
-    this.isAnimated=true
+    this.isAnimated = true,
+    this.userEmail, // Include email in the constructor
   });
 }

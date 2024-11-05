@@ -3,6 +3,7 @@ import 'package:chatbot_gemini/core/theme/app_text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../../../core/shared_widgets/custom_alert_dialog.dart';
 import '../../cubit/chat_cubit.dart';
 
 class BotDetailsLine extends StatelessWidget {
@@ -58,11 +59,27 @@ class BotDetailsLine extends StatelessWidget {
               PopupMenuItem(
                 height: 40.h,
                 onTap: () {
-                  BlocProvider.of<ChatCubit>(context).deleteChatFromDB(
-                      BlocProvider.of<ChatCubit>(context).currentChatId);
+                   showCustomAlertDialog(
+                            context: context,
+                            title: 'Clear Chat Messages?',
+                            description:
+                                'Are you sure you want to delete all messages from this chat? The chat session will remain, but all current messages will be permanently erased. This action cannot be undone.',
+                            primaryActionText: 'Yes, Delete',
+                            secondaryActionText: 'Cancel',
+                            primaryActionButtonColor: Colors.red.shade800,
+                            primaryActionFun: () {
+                              BlocProvider.of<ChatCubit>(context)
+                                  .deleteChatFromDB(
+                                      BlocProvider.of<ChatCubit>(context)
+                                          .currentChatId);
+                              Navigator.pop(context);
+                            },
+                            secondaryActionFun: () {
+                              Navigator.pop(context);
+                            },
+                   );
                 },
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     Icon(
                       Icons.delete_forever,

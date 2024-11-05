@@ -1,3 +1,4 @@
+import 'package:chatbot_gemini/core/cach_helper/shared_preference.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:uuid/uuid.dart';
 import '../../../core/hive_service/hive_service.dart';
@@ -19,6 +20,7 @@ class ChatCubit extends Cubit<ChatState> {
   ChatCubit(this.messageRepository, this.hiveService)
       : super(const ChatState.initial()) {
     _initialize();
+    loadAnimatedMessageIds();
   }
 
   Future<void> _initialize() async {
@@ -27,15 +29,21 @@ class ChatCubit extends Cubit<ChatState> {
   }
 
   Future<void> loadChatHistory() async {
-    chatHistory = hiveService.chatHiveModelBox.values.toList();
+    final userEmail = await SharedPrefHelper.getString('userEmail');
+    chatHistory = hiveService.chatHiveModelBox.values
+        .where((chat) => chat.userEmail == userEmail) // Filter by user email
+        .toList();
     emit(ChatState.historyLoaded(chatHistory));
     emit(ChatState.initial());
   }
 
   Future<void> loadMessagesFromDB(String chatId) async {
     currentChatId = chatId;
+    final userEmail = await SharedPrefHelper.getString('userEmail');
     messages = hiveService.messageBox.values
-        .where((msg) => msg.chatId == chatId)
+        .where((msg) =>
+            msg.chatId == chatId &&
+            msg.userEmail == userEmail) // Filter by user email
         .map((msg) => MessageModel(
               chatId: chatId,
               content: msg.content,
@@ -90,6 +98,7 @@ class ChatCubit extends Cubit<ChatState> {
       content: message.content,
       sender: message.sender,
       imageUrl: message.imageUrl,
+      userEmail: await SharedPrefHelper.getString('userEmail'),
     );
     await hiveService.messageBox.add(messageHiveModel);
   }
@@ -110,6 +119,7 @@ class ChatCubit extends Cubit<ChatState> {
         title: userMessage.content!,
         subTitle: botResponse,
         messageIds: [userMessage.chatId],
+        userEmail: await SharedPrefHelper.getString('userEmail'),
       );
       await hiveService.chatHiveModelBox.put(currentChatId, newChat);
       chatHistory.add(newChat);
@@ -129,6 +139,7 @@ class ChatCubit extends Cubit<ChatState> {
       title: 'New Chat',
       subTitle: 'Tap to view',
       messageIds: [],
+      userEmail: await SharedPrefHelper.getString('userEmail'),
     );
 
     await hiveService.chatHiveModelBox.put(newChatId, newChat);
@@ -150,11 +161,11 @@ class ChatCubit extends Cubit<ChatState> {
       }
       messages.clear();
       final resetChat = ChatHiveModel(
-        id: chatId,
-        title: 'New Chat',
-        subTitle: 'Tap to view',
-        messageIds: [],
-      );
+          id: chatId,
+          title: 'New Chat',
+          subTitle: 'Tap to view',
+          messageIds: [],
+          userEmail: await SharedPrefHelper.getString('userEmail'));
 
       await hiveService.chatHiveModelBox.put(chatId, resetChat);
       chatHistory = hiveService.chatHiveModelBox.values.toList();
@@ -182,5 +193,23 @@ class ChatCubit extends Cubit<ChatState> {
     currentChatId = chatId;
     emit(ChatState.loading());
     await loadMessagesFromDB(chatId);
+  }
+
+  List<String> animatedMessageIds = [];
+
+  Future<void> loadAnimatedMessageIds() async {
+    animatedMessageIds =
+        await SharedPrefHelper.getStringList('animatedMessageIds');
+  }
+
+  Future<void> markMessageAsAnimated(String chatId) async {
+    if (!animatedMessageIds.contains(chatId)) {
+      animatedMessageIds.add(chatId);
+      await SharedPrefHelper.setData('animatedMessageIds', animatedMessageIds);
+    }
+  }
+
+  bool isMessageAnimated(String chatId) {
+    return animatedMessageIds.contains(chatId);
   }
 }

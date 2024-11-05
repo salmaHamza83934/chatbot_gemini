@@ -24,6 +24,7 @@ class LoginCubit extends Cubit<LoginState> {
           passwordController.text,
         );
         await SharedPrefHelper.setSecuredString('userToken', FirebaseAuth.instance.currentUser!.uid);
+        await SharedPrefHelper.setData('userEmail', FirebaseAuth.instance.currentUser!.email);
 
         emit(LoginState.loginSuccess(response));
       } on FirebaseAuthException catch (e) {

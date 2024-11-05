@@ -17,10 +17,15 @@ class MessageHiveModel extends HiveObject {
   @HiveField(3)
   final String? imageUrl;
 
+  @HiveField(4)
+  final String? userEmail;
+
   MessageHiveModel({
     required this.chatId,
     required this.content,
     required this.sender,
+    this.userEmail,
     this.imageUrl,
   });
+
 }

@@ -1,10 +1,13 @@
 import 'dart:io';
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:chatbot_gemini/features/chat_screen/cubit/chat_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 import '../../../../core/theme/app_text_styles.dart';
+import '../../cubit/chat_state.dart';
 import '../../data/models/message_model.dart';
 
 class MessageWidget extends StatelessWidget {
@@ -83,51 +86,68 @@ class ReceiverMessage extends StatefulWidget {
 
 class _ReceiverMessageState extends State<ReceiverMessage> {
   @override
+  void initState() {
+   context.read<ChatCubit>().loadAnimatedMessageIds();
+    super.initState();
+  }
+  @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
           margin: EdgeInsets.only(
-              top: 10.h,
-              bottom: 10.h,
-              right: widget.message.isLoading ? 180.w : 40.w,
-              left: 10.w),
+            top: 10.h,
+            bottom: 10.h,
+            right: widget.message.isLoading ? 180.w : 40.w,
+            left: 10.w,
+          ),
           padding: EdgeInsets.all(10.r),
           decoration: BoxDecoration(
             color: Colors.grey[200],
             borderRadius: BorderRadius.only(
-                topRight: Radius.circular(12.r),
-                topLeft: Radius.circular(12.r),
-                bottomRight: Radius.circular(12.r)),
+              topRight: Radius.circular(12.r),
+              topLeft: Radius.circular(12.r),
+              bottomRight: Radius.circular(12.r),
+            ),
           ),
           child: widget.message.isLoading
               ? SpinKitThreeBounce(
                   color: Colors.grey.shade500,
                   size: 25.0.r,
                 )
-              : (widget.message.isAnimated)
-                  ? AnimatedTextKit(
-                      isRepeatingAnimation: false,
-                      onFinished: () {
-                        // Once the animation is complete, mark it as done
-                        widget.message.isAnimated = false;
-                        setState(() {});
-                      },
-                      animatedTexts: [
-                        TypewriterAnimatedText(
-                          textStyle: AppTextStyles.font15quicksand
-                              .copyWith(fontSize: 15),
-                          speed: const Duration(milliseconds: 20),
-                          widget.message.content ??
-                              'Sorry, something went wrong!',
-                        ),
-                      ],
-                    )
-                  : Text(
-                      widget.message.content ?? 'Sorry, something went wrong!',
-                      style: AppTextStyles.font15quicksand,
-                    ),
+              : BlocBuilder<ChatCubit, ChatState>(
+                  builder: (context, state) {
+                    return !context
+                            .read<ChatCubit>()
+                            .isMessageAnimated(widget.message.chatId)
+                        ? DefaultTextStyle(
+                            style: AppTextStyles.font16quicksand,
+                            child: AnimatedTextKit(
+                              isRepeatingAnimation: false,
+                              onFinished: () {
+                                context
+                                    .read<ChatCubit>()
+                                    .markMessageAsAnimated(widget.message.chatId);
+                              },
+                              animatedTexts: [
+                                TypewriterAnimatedText(
+                                  widget.message.content ??
+                                      'Sorry, something went wrong!',
+                                  speed: const Duration(milliseconds: 20),
+                                ),
+                              ],
+                            ),
+                          )
+                        : RichText(
+                            text: TextSpan(
+                              style: AppTextStyles.font16quicksand,
+                              text: widget.message.content ??
+                                  'Sorry, something went wrong!',
+                            ),
+                          );
+                  },
+                ),
         ),
       ],
     );

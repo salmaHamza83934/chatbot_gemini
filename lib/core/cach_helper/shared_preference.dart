@@ -37,6 +37,9 @@ class SharedPrefHelper {
       case double:
         await sharedPreferences.setDouble(key, value);
         break;
+      case const (List<String>):
+        await sharedPreferences.setStringList(key, value);
+        break;
       default:
         return;
     }
@@ -70,6 +73,13 @@ class SharedPrefHelper {
     return sharedPreferences.getString(key) ?? '';
   }
 
+  /// Gets a List <String> value from SharedPreferences with given [key].
+  static Future<List<String>> getStringList(String key) async {
+    debugPrint('SharedPrefHelper : getString with key : $key');
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    return sharedPreferences.getStringList(key) ?? [];
+  }
+
   /// Saves a [value] with a [key] in the FlutterSecureStorage.
   static Future<void> setSecuredString(String key, String value) async {
     const flutterSecureStorage = FlutterSecureStorage();
@@ -91,5 +101,4 @@ class SharedPrefHelper {
     const flutterSecureStorage = FlutterSecureStorage();
     await flutterSecureStorage.deleteAll();
   }
-
 }
