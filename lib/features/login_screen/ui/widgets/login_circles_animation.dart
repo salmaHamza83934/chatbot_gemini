@@ -16,60 +16,60 @@ class LoginCirclesAnimation extends StatelessWidget {
           right: sin(controller.value * 2 * pi) * 50,
           // Moves with sin wave
           bottom: sin(controller.value * 2 * pi) * 50,
-          child: _buildCircle(),
+          child: _buildBigCircle(),
         ),
         // Top right circle
         Positioned(
           right: sin(controller.value * 2 * pi + pi / 2) * 100,
           // Different phase
           bottom: cos(controller.value * 2 * pi) * 100,
-          child: _buildCircle2(),
+          child: _buildSmallCircle(),
         ),
         Positioned(
           right: cos(controller.value * 2 * pi + pi / 3) * 70,
           bottom: sin(controller.value * 2 * pi + pi / 4) * 80,
-          child: _buildCircle(),
+          child: _buildBigCircle(),
         ),
         Positioned(
           left: cos(controller.value * 2 * pi + pi / 2) * 60,
           top: cos(controller.value * 2 * pi) * 60,
-          child: _buildCircle(),
+          child: _buildBigCircle(),
         ),
         // Bottom left circle
         Positioned(
           left: cos(controller.value * 2 * pi) * 60,
           top: sin(controller.value * 2 * pi) * 60,
-          child: _buildCircle2(),
+          child: _buildSmallCircle(),
         ),
         // Bottom right circle
         Positioned(
           left: sin(controller.value * 2 * pi + pi / 2) * 80,
           // Different phase
           top: cos(controller.value * 2 * pi) * 80,
-          child: _buildCircle2(),
+          child: _buildSmallCircle(),
         ),
         // Additional circles
         Positioned(
           left: sin(controller.value * 2 * pi + pi / 4) * 90,
           top: sin(controller.value * 2 * pi + pi / 6) * 90,
-          child: _buildCircle(),
+          child: _buildBigCircle(),
         ),
         Positioned(
           right: cos(controller.value * 2 * pi + pi / 5) * 70,
           bottom: cos(controller.value * 2 * pi + pi / 6) * 70,
-          child: _buildCircle2(),
+          child: _buildSmallCircle(),
         ),
         Positioned(
           left: cos(controller.value * 2 * pi + pi / 3) * 80,
           bottom: sin(controller.value * 2 * pi + pi / 5) * 80,
-          child: _buildCircle(),
+          child: _buildBigCircle(),
         ),
       ],
     );
   }
 
   // Helper function to build a circle
-  Widget _buildCircle() {
+  Widget _buildBigCircle() {
     return Container(
       width: 100,
       height: 100,
@@ -89,7 +89,7 @@ class LoginCirclesAnimation extends StatelessWidget {
     );
   }
 
-  Widget _buildCircle2() {
+  Widget _buildSmallCircle() {
     return Container(
       width: 60,
       height: 60,

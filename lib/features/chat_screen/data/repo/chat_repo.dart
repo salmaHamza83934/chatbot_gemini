@@ -1,20 +1,10 @@
 import 'dart:developer';
 import 'dart:io';
 import 'package:flutter_gemini/flutter_gemini.dart';
-import 'package:hive/hive.dart';
 
-import '../models/chat_hive_model.dart';
-import '../models/message_hive_model.dart';
 
-class MessageRepository {
+class ChatRepository {
   final Gemini gemini = Gemini.instance;
-  late Box<MessageHiveModel> messageBox;
-  late Box<ChatHiveModel> chatHiveModelBox;
-
-  Future<void> init() async {
-    messageBox = await Hive.openBox<MessageHiveModel>('chatMessages');
-    chatHiveModelBox = await Hive.openBox<ChatHiveModel>('chatBox');
-  }
 
   Future<String> sendMessage(String content, {String? imagePath}) async {
     try {

@@ -1,5 +1,5 @@
 import 'package:chatbot_gemini/features/chat_screen/cubit/chat_cubit.dart';
-import 'package:chatbot_gemini/features/chat_screen/data/repo/message_repo.dart';
+import 'package:chatbot_gemini/features/chat_screen/data/repo/chat_repo.dart';
 import 'package:chatbot_gemini/features/login_screen/data/login_repo.dart';
 import 'package:chatbot_gemini/features/login_screen/logic/login_cubit.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -23,6 +23,6 @@ Future<void> setupGetIt() async {
   final hiveService = HiveService();
   await hiveService.init(); // Initialize Hive and boxes
   getIt.registerSingleton<HiveService>(hiveService);
-  getIt.registerLazySingleton<MessageRepository>(() => MessageRepository());
-  getIt.registerFactory<ChatCubit>(() => ChatCubit(getIt<MessageRepository>(), getIt<HiveService>()));
+  getIt.registerLazySingleton<ChatRepository>(() => ChatRepository());
+  getIt.registerFactory<ChatCubit>(() => ChatCubit(getIt<ChatRepository>(), getIt<HiveService>()));
 }

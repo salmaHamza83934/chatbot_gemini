@@ -1,10 +1,10 @@
 import 'package:chatbot_gemini/features/chat_screen/cubit/chat_cubit.dart';
 import 'package:chatbot_gemini/features/chat_screen/ui/widgets/chat_bloc_builder.dart';
-import 'package:chatbot_gemini/features/chat_history/ui/chat_drawer.dart';
 import 'package:chatbot_gemini/features/chat_screen/ui/widgets/message_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'chat_history/chat_drawer.dart';
 import 'widgets/bot_details_line.dart';
 
 class ChatScreen extends StatelessWidget {
@@ -15,8 +15,9 @@ class ChatScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (chatId != null && context.read<ChatCubit>().currentChatId != chatId) {
-      context.read<ChatCubit>().currentChatId = chatId!;
-      context.read<ChatCubit>().loadMessagesFromDB(chatId!);
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        context.read<ChatCubit>().selectChat(chatId!);
+      });
     }
     return Scaffold(
       drawer: buildChatScreenDrawer(context),

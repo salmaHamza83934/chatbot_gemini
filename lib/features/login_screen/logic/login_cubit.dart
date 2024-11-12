@@ -2,10 +2,8 @@ import 'package:bloc/bloc.dart';
 import 'package:chatbot_gemini/features/login_screen/data/login_repo.dart';
 import 'package:chatbot_gemini/features/login_screen/logic/login_state.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-
-import '../../../core/cach_helper/shared_preference.dart';
+import '../../../core/cache_helper/shared_preference.dart';
 
 class LoginCubit extends Cubit<LoginState> {
   final LoginRepository _loginRepository;

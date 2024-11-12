@@ -20,6 +20,7 @@ class MessageHiveModelAdapter extends TypeAdapter<MessageHiveModel> {
       chatId: fields[0] as String,
       content: fields[1] as String?,
       sender: fields[2] as String,
+      userEmail: fields[4] as String,
       imageUrl: fields[3] as String?,
     );
   }
@@ -27,7 +28,7 @@ class MessageHiveModelAdapter extends TypeAdapter<MessageHiveModel> {
   @override
   void write(BinaryWriter writer, MessageHiveModel obj) {
     writer
-      ..writeByte(4)
+      ..writeByte(5)
       ..writeByte(0)
       ..write(obj.chatId)
       ..writeByte(1)
@@ -35,7 +36,9 @@ class MessageHiveModelAdapter extends TypeAdapter<MessageHiveModel> {
       ..writeByte(2)
       ..write(obj.sender)
       ..writeByte(3)
-      ..write(obj.imageUrl);
+      ..write(obj.imageUrl)
+      ..writeByte(4)
+      ..write(obj.userEmail);
   }
 
   @override

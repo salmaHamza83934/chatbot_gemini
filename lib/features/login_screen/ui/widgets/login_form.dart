@@ -1,3 +1,4 @@
+import 'package:chatbot_gemini/core/app_regex/app_regex.dart';
 import 'package:chatbot_gemini/features/login_screen/logic/login_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -33,38 +34,42 @@ class _LoginFormState extends State<LoginForm> {
           const LoginTitleSection(),
           AppFormField(
             textInputType: TextInputType.emailAddress,
-              haveIcon: false,
-              hintText: 'Enter your E-mail',
-              controller:context.read<LoginCubit>().emailController,validator: (text) {
-            if (text == null || text
-                .trim()
-                .isEmpty) {
-              return 'field musn\'t be empty';
-            }
-            return null;
-          },),
-          AppFormField(
-              haveIcon: true,
-              hintText: 'Enter your password',
-              controller:
-              context.read<LoginCubit>().passwordController,validator: (text) {
-            if (text == null || text
-                .trim()
-                .isEmpty) {
-              return 'field musn\'t be empty';
-            }
-            return null;
-          },isObscure: isObscure,suffixIcon: GestureDetector(
-            onTap: () {
-              setState(() {
-                isObscure = !isObscure;
-              });
+            haveIcon: false,
+            hintText: 'Enter your E-mail',
+            controller: context.read<LoginCubit>().emailController,
+            validator: (text) {
+              if (text == null || text.trim().isEmpty) {
+                return 'field musn\'t be empty';
+              }
+              if (!AppRegex.isEmailValid(text)) {
+                return 'enter valid e-mail';
+              }
+              return null;
             },
-            child: Icon(
-              isObscure ? Icons.visibility_off : Icons.visibility,
-              color: Colors.cyan,
+          ),
+          AppFormField(
+            haveIcon: true,
+            hintText: 'Enter your password',
+            controller: context.read<LoginCubit>().passwordController,
+            validator: (text) {
+              if (text == null || text.trim().isEmpty) {
+                return 'field musn\'t be empty';
+              }
+              return null;
+            },
+            isObscure: isObscure,
+            suffixIcon: GestureDetector(
+              onTap: () {
+                setState(() {
+                  isObscure = !isObscure;
+                });
+              },
+              child: Icon(
+                isObscure ? Icons.visibility_off : Icons.visibility,
+                color: Colors.cyan,
+              ),
             ),
-          ),),
+          ),
           SizedBox(
             height: 20.h,
           ),

@@ -1,11 +1,9 @@
 import 'dart:io';
-import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:chatbot_gemini/features/chat_screen/cubit/chat_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-
 import '../../../../core/theme/app_text_styles.dart';
 import '../../cubit/chat_state.dart';
 import '../../data/models/message_model.dart';
@@ -86,11 +84,6 @@ class ReceiverMessage extends StatefulWidget {
 
 class _ReceiverMessageState extends State<ReceiverMessage> {
   @override
-  void initState() {
-   context.read<ChatCubit>().loadAnimatedMessageIds();
-    super.initState();
-  }
-  @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -118,28 +111,7 @@ class _ReceiverMessageState extends State<ReceiverMessage> {
                 )
               : BlocBuilder<ChatCubit, ChatState>(
                   builder: (context, state) {
-                    return !context
-                            .read<ChatCubit>()
-                            .isMessageAnimated(widget.message.chatId)
-                        ? DefaultTextStyle(
-                            style: AppTextStyles.font16quicksand,
-                            child: AnimatedTextKit(
-                              isRepeatingAnimation: false,
-                              onFinished: () {
-                                context
-                                    .read<ChatCubit>()
-                                    .markMessageAsAnimated(widget.message.chatId);
-                              },
-                              animatedTexts: [
-                                TypewriterAnimatedText(
-                                  widget.message.content ??
-                                      'Sorry, something went wrong!',
-                                  speed: const Duration(milliseconds: 20),
-                                ),
-                              ],
-                            ),
-                          )
-                        : RichText(
+                    return RichText(
                             text: TextSpan(
                               style: AppTextStyles.font16quicksand,
                               text: widget.message.content ??

@@ -73,6 +73,9 @@ class _SignupFormState extends State<SignupForm> {
               if (text == null || text.trim().isEmpty) {
                 return 'field musn\'t be empty';
               }
+              if (!AppRegex.isEmailValid(text)) {
+                return 'enter valid e-mail';
+              }
               return null;
             },
           ),

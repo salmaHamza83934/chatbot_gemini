@@ -3,7 +3,7 @@ import 'package:chatbot_gemini/core/theme/app_text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../core/cach_helper/shared_preference.dart';
+import '../../../core/cache_helper/shared_preference.dart';
 import '../../../core/constants/constants.dart';
 
 class GetStartedButton extends StatelessWidget {

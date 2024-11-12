@@ -14,68 +14,68 @@ class SignupCirclesAnimation extends StatelessWidget {
         Positioned(
           right: sin(_controller.value * 2 * pi) * 50,
           top: sin(_controller.value * 2 * pi) * 50,
-          child: _buildCircle(),
+          child: _buildBigCircle(),
         ),
         // Top right circle
         Positioned(
           right: sin(_controller.value * 2 * pi + pi / 2) * 100,
           top: cos(_controller.value * 2 * pi) * 100,
-          child: _buildCircle2(),
+          child: _buildSmallCircle(),
         ),
         // Additional circles
         Positioned(
           right: cos(_controller.value * 2 * pi + pi / 3) * 70,
           top: sin(_controller.value * 2 * pi + pi / 4) * 80,
-          child: _buildCircle(),
+          child: _buildBigCircle(),
         ),
         Positioned(
           right: sin(_controller.value * 2 * pi + pi / 6) * 60,
           top: cos(_controller.value * 2 * pi + pi / 2) * 90,
-          child: _buildCircle2(),
+          child: _buildSmallCircle(),
         ),
         Positioned(
           left: sin(_controller.value * 2 * pi + pi / 4) * 80,
           bottom: cos(_controller.value * 2 * pi) * 70,
-          child: _buildCircle(),
+          child: _buildBigCircle(),
         ),
         Positioned(
           left: cos(_controller.value * 2 * pi + pi / 3) * 50,
           bottom: sin(_controller.value * 2 * pi + pi / 4) * 60,
-          child: _buildCircle2(),
+          child: _buildSmallCircle(),
         ),
         Positioned(
           left: sin(_controller.value * 2 * pi + pi / 2) * 90,
           bottom: cos(_controller.value * 2 * pi + pi / 3) * 80,
-          child: _buildCircle(),
+          child: _buildBigCircle(),
         ),
         Positioned(
           right: cos(_controller.value * 2 * pi + pi / 4) * 90,
           bottom: sin(_controller.value * 2 * pi + pi / 2) * 70,
-          child: _buildCircle2(),
+          child: _buildSmallCircle(),
         ),
         // Bottom left circle
         Positioned(
           left: cos(_controller.value * 2 * pi) * 60,
           bottom: sin(_controller.value * 2 * pi) * 60,
-          child: _buildCircle2(),
+          child: _buildSmallCircle(),
         ),
         // Bottom right circle
         Positioned(
           left: cos(_controller.value * 2 * pi + pi / 2) * 60,
           bottom: cos(_controller.value * 2 * pi) * 60,
-          child: _buildCircle(),
+          child: _buildBigCircle(),
         ),
         Positioned(
           left: cos(_controller.value * 2 * pi + pi / 2) * 100,
           bottom: sin(_controller.value * 2 * pi) * 100,
-          child: _buildCircle2(),
+          child: _buildSmallCircle(),
         ),
       ],
     );
   }
 
   // Helper function to build a circle
-  Widget _buildCircle() {
+  Widget _buildBigCircle() {
     return Container(
       width: 100,
       height: 100,
@@ -95,7 +95,7 @@ class SignupCirclesAnimation extends StatelessWidget {
     );
   }
 
-  Widget _buildCircle2() {
+  Widget _buildSmallCircle() {
     return Container(
       width: 60,
       height: 60,
