@@ -73,6 +73,7 @@ class SignupBlocListener extends StatelessWidget {
                 disabledForegroundColor: Colors.grey.withOpacity(0.38),
               ),
               onPressed: () {
+                Navigator.pop(context);
                 Navigator.pushReplacementNamed(context, Routes.loginScreen);
 
               },
