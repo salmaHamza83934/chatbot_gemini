@@ -1,29 +1,30 @@
 # Gemini Chatbot Application 🌟:
-## Overview 🚀
-The Gemini Chatbot Application is a dynamic and engaging chat interface built with Flutter and the Gemini API. This application provides an interactive and conversational experience, featuring real-time communication with an AI chatbot.
 
-## Features 🎨
-- Real-Time Messaging: Seamless real-time communication with the Gemini chatbot.
-- Typing Indicator: Displays a "CleverCat is typing..." message to enhance the conversational flow.
-- Animated UI: Include animations to enhance user experience.
-- Message Handling: Manage and display messages efficiently, including handling errors and responses.
-- Responsive Design: Utilizes Flutter’s responsive design features using screenUtils.
+## 🚀 Overview
+An interactive chatbot app designed for seamless and engaging conversations. Powered by the Gemini API, this app includes advanced features like chat history, message caching, and secure user authentication.
 
-## Usage 📖
-Start Chatting: Launch the app and interact with the AI chatbot.
-View Messages: Send messages and receive responses from the chatbot.
-Delete Chat: Use the provided options to delete chat history.
+## 🎨 Features
+- Onboarding with Animations: A welcoming and interactive introduction to the app.
+- Login & Signup: Secure authentication with Firebase, enhanced with animations and intuitive dialogs.
+- Chat Screen:
+Supports text and image messages.
+Chat history with reliable message caching for offline access.
+- Chat Drawer:
+Organized navigation with chat history management.
+User options like clearing chats, deleting chats, and signing out.
 
-## App UI 📱
-### Onboarding animation:
-![WhatsAppVideo2024-09-15at13 11 07-ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/5e4f29f0-3c4c-4b6a-996d-de3ceb2535f4)
+## 🛠️ Technologies Used
+- Flutter: For building the app’s user interface and managing animations.
+- Firebase: Secure authentication and cloud storage.
+- Hive: Efficient local data management for chat history and caching.
+- Gemini API: Enhanced conversational interactions, supporting both text and image responses.
 
-### Chat screen with no message:
-![WhatsApp Image 2024-09-15 at 13 11 07 (1)](https://github.com/user-attachments/assets/92084dad-3ec1-4cde-a210-f08540d7e90e)
 
-### Chat screen with messages:
-![WhatsApp Image 2024-09-15 at 13 11 08](https://github.com/user-attachments/assets/2886923b-6c09-4f43-98d1-9d2c3c3c8a75)
+## 📱 App UI 
 
-### Chat screen in error state (no internet):
-![WhatsApp Image 2024-09-15 at 13 11 08 (1)](https://github.com/user-attachments/assets/a4de990e-ca5d-4a7e-a550-738d2ebfd513)
-
+![A project refers to a sequence of tasks that are carefully planned and executed to achieve a specific objective  Projects are essential in various fields, such as business, engineering, and educat (1)](https://github.com/user-attachments/assets/38b517aa-ec08-4f85-bc99-510f63f7110c)
+![A project refers to a sequence of tasks that are carefully planned and executed to achieve a specific objective  Projects are essential in various fields, such as business, engineering, and educat](https://github.com/user-attachments/assets/7a8651b7-8fb0-46dd-80a1-2babfed99fc6)
+![3](https://github.com/user-attachments/assets/d79e833b-d456-4235-bff9-fa601b6f1ea0)
+![4](https://github.com/user-attachments/assets/833bd694-eb94-4a6d-ac6a-5e79672aeca4)
+![5](https://github.com/user-attachments/assets/63dcce07-139a-4f24-804f-a5824c8fd1f6)
+![6](https://github.com/user-attachments/assets/d3958890-dd69-4aed-8d38-9eb0a24f33b0)
