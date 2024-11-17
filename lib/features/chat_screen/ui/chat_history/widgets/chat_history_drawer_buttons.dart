@@ -68,6 +68,7 @@ class ChatHistoryDrawerButtons extends StatelessWidget {
                     primaryActionButtonColor: Colors.cyan,
                     primaryActionFun: () async {
                       await SharedPrefHelper.clearAllSecuredData().then((v) {
+                        Navigator.pop(context);
                         Navigator.pushReplacementNamed(
                           context, Routes.onboardingScreen,);
                       });

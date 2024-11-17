@@ -106,7 +106,7 @@ class ChatHistoryBlocBuilder extends StatelessWidget {
                           onTap: () {
                             BlocProvider.of<ChatCubit>(context)
                                 .selectChat(chat.id);
-                            Navigator.pushNamed(
+                            Navigator.pushReplacementNamed(
                                 context, Routes.chatScreen,
                                 arguments: {'chatId': chat.id});
                           },

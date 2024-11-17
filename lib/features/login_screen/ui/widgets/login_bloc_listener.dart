@@ -36,6 +36,7 @@ class LoginBlocListener extends StatelessWidget {
             showSuccessDialog(context);
           },
           loginError: (error) {
+            Navigator.pop(context);
             setupErrorState(context, error);
           },
         );
@@ -74,6 +75,7 @@ class LoginBlocListener extends StatelessWidget {
                 disabledForegroundColor: Colors.grey.withOpacity(0.38),
               ),
               onPressed: () {
+                Navigator.pop(context);
                 Navigator.pushReplacementNamed(context, Routes.chatScreen);
               },
               child: Text(
