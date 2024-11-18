@@ -4,20 +4,37 @@
 An interactive chatbot app designed for seamless and engaging conversations. Powered by the Gemini API, this app includes advanced features like chat history, message caching, and secure user authentication.
 
 ## 🎨 Features
-- Onboarding with Animations: A welcoming and interactive introduction to the app.
-- Login & Signup: Secure authentication with Firebase, enhanced with animations and intuitive dialogs.
-- Chat Screen:
-Supports text and image messages.
-Chat history with reliable message caching for offline access.
-- Chat Drawer:
-Organized navigation with chat history management.
-User options like clearing chats, deleting chats, and signing out.
+
+- 🌠 Onboarding with Animations
+A welcoming and interactive introduction to the app.
+
+- 🔐 Login & Signup
+Secure authentication with Firebase, enhanced with animations and intuitive dialogs.
+
+- 💬 Chat Screen
+
+   - Supports text and image messages.
+
+   - Chat history with reliable message caching for offline access.
+
+
+- 📂 Chat Drawer
+
+    - Organized navigation with chat history management.
+
+    - User-friendly options like clearing chats, deleting chats, and signing out.
+
+
 
 ## 🛠️ Technologies Used
-- Flutter: For building the app’s user interface and managing animations.
-- Firebase: Secure authentication and cloud storage.
-- Hive: Efficient local data management for chat history and caching.
-- Gemini API: Enhanced conversational interactions, supporting both text and image responses.
+
+- 🐦 Flutter: For building the app’s user interface and managing animations.
+
+- 🔥 Firebase: Secure authentication and cloud storage.
+
+- 📦 Hive: Efficient local data management for chat history and caching.
+
+- 💎 Gemini API: Enhanced conversational interactions, supporting both text and image responses.
 
 
 ## 📱 App UI 
